@@ -3,21 +3,20 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edumagComment">
-    <!-- 교육메거진 댓글 목록 -->
+    <!-- 댓글 목록 -->
     <select id="edumagCommentList" resultType="kr.co.teaspoon.dto.EdumagComment">
-        select * from edumagComment where bno=#{bno} order by resdate desc
+        select * from edumagComment where par = #{par} order by regdate desc
     </select>
-    <!-- 댓글 수 카운트 -->
-    <select id="totalCount" resultType="integer" >
-        select count(*) from edumagComment where no = #{no}
-    </select>
-
     <insert id="edumagCommentInsert">
-        insert into edumagComment (bno, id, content) values(#{bno}, #{id}, #{content})
+        insert into edumagComment values (default, #{author}, #{content}, default, #{par})
     </insert>
-
     <delete id="edumagCommentDelete">
-        delete from edumagComment where no=#{no}
+        delete from edumagComment where dno=#{dno}
     </delete>
+    <update id="edumagCommentEdit">
+        update edumagComment set title=#{title}, content=#{content} where dno=#{dno}
+    </update>
+
+
 
 </mapper>

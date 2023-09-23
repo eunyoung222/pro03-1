@@ -37,6 +37,15 @@
         border-color: #FFA500;
         color: #ffffff;
     }
+
+    .column1 {
+        text-align: center;
+        display: block;
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 0.75rem;
+    }
 </style>
 
 <body>
@@ -44,7 +53,7 @@
     <!-- 헤더 부분 인클루드 -->
     <jsp:include page="../include/hd.jsp"></jsp:include>
     <div class="content" id="contents">
-        <div class="row column text-center">
+        <div class="row column1 text-center">
             <h2 class="h1">글 쓰기</h2>
             <hr>
             <div class="container">
@@ -67,9 +76,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="background-color:#dcdcdc">유튜브 링크</th>
+                            <th style="background-color:#dcdcdc">유튜브<br> 링크</th>
                             <td>
                                 <input type="text" name="link" id="link" class="textarea" placeholder="유튜브 영상 링크 입력"
+                                       style="width: 1200px; height: 50px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="background-color:#dcdcdc">썸네일 <br>이미지</th>
+                            <td>
+                                <input type="text" name="imagesLink" id="imagesLink" class="textarea" placeholder="썸네일 이미지 주소 등록"
                                        style="width: 1200px; height: 50px;">
                             </td>
                         </tr>

@@ -79,8 +79,15 @@ public class MemberController {
         out.println(json.toString());
     }
 
-    //회원 가입 - 회원 가입 처리
-    @RequestMapping(value="insert.do", method = RequestMethod.POST)
+    // 회원 가입 폼 로딩 (GET 요청)
+    @GetMapping("insert-form")
+    public String getMemberInsertForm(Model model) {
+        // 폼을 로딩하는 로직 추가
+        return "/member/memberInsert";
+    }
+
+    // 회원 가입 - 회원 가입 처리 (POST 요청)
+    @PostMapping("insert.do")
     public String memberWrite(Member member, Model model) throws Exception {
         String ppw = member.getPw();
         String pw = pwEncoder.encode(ppw);
@@ -88,6 +95,16 @@ public class MemberController {
         memberService.memberInsert(member);
         return "redirect:/";
     }
+
+//    //회원 가입 - 회원 가입 처리
+//    @RequestMapping(value="insert.do", method = RequestMethod.POST)
+//    public String memberWrite(Member member, Model model) throws Exception {
+//        String ppw = member.getPw();
+//        String pw = pwEncoder.encode(ppw);
+//        member.setPw(pw);
+//        memberService.memberInsert(member);
+//        return "redirect:/";
+//    }
 
     //로그인 폼 로딩
     @RequestMapping("login.do")
@@ -129,4 +146,67 @@ public class MemberController {
         session.invalidate();
         return "redirect:/";
     }
+
+    // 아이디 찾기 폼 로딩
+    @GetMapping("find_id.do")
+    public String findIdForm() {
+        return  "/member/findIdForm";
+    }
+
+    // 아이디 찾기 처리
+    @PostMapping("find_id_process.do")
+    public String findIdProcess(@RequestParam String email, Model model) throws Exception {
+        // 이메일을 기반으ㄹ 아이디를 찾음
+        String foundId = memberService.findByEmail(email);
+        if (foundId != null) {
+            model.addAttribute("foundId", foundId);
+            return "/member/foundId";
+        } else {
+            model.addAttribute("message", "일치하는 이메일 주소로 등록된 아이디가 없습니다.");
+            return "/member/findIdForm";
+        }
+    }
+
+    //회원정보 변경
+    @RequestMapping(value="update.do", method=RequestMethod.POST)
+    public String memberUpdate(Member mem, Model model) throws Exception {
+        String pwd = "";
+        if(mem.getPw().length()<=16) {
+            pwd = pwEncoder.encode(mem.getPw());
+            mem.setPw(pwd);
+        }
+        memberService.memberEdit(mem);
+        return "redirect:/";
+    }
+
+    //회원 탈퇴
+    @RequestMapping(value="delete.do", method = RequestMethod.GET)
+    public String memberDelete(@RequestParam String id, Model model, HttpSession session) throws Exception {
+        memberService.memberDelete(id);
+        session.invalidate();
+        return "redirect:/";
+    }
+
+
+    // 비밀번호 찾기 폼 로딩
+    @GetMapping("find_pw.do")
+    public String findPwForm() {
+        return  "/member/findPwForm";
+    }
+
+    // 비밀번호 찾기 처리
+    @PostMapping("find_pw_process.do")
+    public String findPasswordProcess(@RequestParam String id, @RequestParam String email, Model model) throws Exception {
+        // 아이디와 이메일을 기반으로 비밀번호를 찾음
+        String newPassword = memberService.findPassword(id, email);
+        if (newPassword != null) {
+            // 새로운 비밀번호를 생성하여 사용자에게 보여줄 수도 있음
+            model.addAttribute("newPassword", newPassword);
+            return "/member/foundPassword"; // 비밀번호를 찾은 페이지로 이동
+        } else {
+            model.addAttribute("message", "일치하는 정보로 등록된 비밀번호가 없습니다.");
+            return "/member/findPasswordForm"; // 비밀번호를 찾지 못한 경우 다시 비밀번호 찾기 폼으로 이동
+        }
+    }
+
 }

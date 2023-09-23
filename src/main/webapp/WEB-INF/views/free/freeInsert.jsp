@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="path1" value="/pro3_war" />
+<c:set var="path1" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,57 +20,51 @@
 <div class="container is-fullhd">
 	<!-- 헤더 부분 인클루드 -->
 	<jsp:include page="../include/hd.jsp"></jsp:include>
-	<figure class="visual" id="vs1">
-		<ul class="imgbox">
-			<li class="hero is-medium is-link">
-				<div class="hero-body">
-					<p class="title">
-						Medium hero
-					</p>
-					<p class="subtitle">
-						Medium subtitle
-					</p>
+	<div class="columns">
+		<div class="column is-2">
+			<aside class="menu">
+				<span class="box has-text-white has-text-weight-semibold has-text-centered is-size-5">
+					커뮤니티
+				</span>
+				<ul class="menu-list">
+					<li>
+						<a href="${path1}/free/list.do">자유게시판</a>
+					</li>
+					<li>
+						<a href="#">교재게시판</a>
+					</li>
+				</ul>
+			</aside>
+		</div>
+		<div class="column is-10">
+			<div class="conwrap">
+				<div class="box">
+					<span class="title">자유게시판</span>
 				</div>
-			</li>
-		</ul>
-	</figure>
-	<div class="content" id="contents">
-	    <div class="row column text-center">
-	      <h2 class="h1">자유게시판 글쓰기</h2>
-	      <hr>
-	      <div class="container">
-	      	<form action="${path1 }/free/insert.do" method="post">
-			      <table id="table1">
-			      	<tbody>
-			      		<tr>
-			      			<th style="background-color:#dcdcdc">글 제목</th>
-			      			<td>
-			      				<input type="text" name="title" id="title" class="input" placeholder="제목 입력" maxlength="98" required>
-			      			</td>
-			      		</tr>
-			      		<tr>
-			      			<th style="background-color:#dcdcdc">글 내용</th>
-			      			<td>
-			      				<textarea name="content" id="content" class="textarea" placeholder="내용 입력" rows="8" cols="100" maxlength="1400" required></textarea>
-			      				<script>
-			      				CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/free/imageUpload.do'});
-			      				</script>
-			      			</td>
-			      		</tr>
-			      		<tr>
-			      			<td colspan="2">
-			      				<input type="submit" class="submit button is-info" value="글 등록" >
-			      				<a class="button is-primary" href="${path1 }/free/list.do">글 목록</a>
-			      			</td>
-			      		</tr>
-			      	</tbody>
-			      </table>
-			   </form>   
-	      </div>
-	    </div>
+			</div>
+
+			<div class="formwrap">
+				<form action="${path1 }/free/insert.do" method="post">
+					<div class="field">
+						<label class="label" for="title">제목</label>
+						<div class="control">
+							<input type="text" name="title" id="title" class="input" maxlength="98" required>
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" for="content">내용</label>
+						<textarea name="content" id="content" class="textarea" rows="8" cols="100" maxlength="1400" required></textarea>
+						<script>
+							CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/free/imageUpload.do'});
+						</script>
+					</div>
+					<button type="submit" class="button post-btn">글 등록</button>
+				</form>
+			</div>
+		</div>
 	</div>
-	<!-- 푸터 부분 인클루드 -->
-	<jsp:include page="../include/ft.jsp"></jsp:include>
 </div>
+<!-- 푸터 부분 인클루드 -->
+<jsp:include page="../include/ft.jsp"></jsp:include>
 </body>
 </html>

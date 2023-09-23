@@ -46,6 +46,16 @@
         color: #fff;
     }
 
+    .column1 {
+        margin-top: -125px;
+        text-align: center;
+        display: block;
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 0.75rem;
+    }
+
 </style>
 <body>
 <section class="hero is-medium has-text-centered" >
@@ -60,7 +70,7 @@
                 학부모들을 위한 가장 신뢰할 만한 정보와 유용한 교육 리소스를 제공합니다!
             </h2>
             <br>
-            <form action="${path1 }/edumag/list.do" method="get" class="field has-addons has-addons-right" style="margin-right: 115px;">
+            <form action="${path1 }/edumag/list.do" method="get" class="field has-addons has-addons-right">
                 <p class="control">
                 <span class="select">
                     <select id="type" name="type">
@@ -77,7 +87,7 @@
             </form>
             <br>
             <div class="columns is-centered">
-                <div class="column is-10">
+                <div class="column1 is-10">
                     <div class="columns is-multiline">
                         <c:forEach items="${edumagList }" var="edumag" varStatus="status">
                         <div class="column is-one-third">
@@ -86,7 +96,8 @@
                                      onclick="location.href='${path1 }/edumag/detail.do?no=${edumag.no}';">
                                     <div class="card-image">
                                         <figure class="image is-16by9">
-                                            <img src="${path1 }/resources/img/${edumag.img}">
+<%--                                            <img src="${path1 }/resources/img/${edumag.img}">--%>
+                                            <img src="${edumag.imagesLink}">
                                         </figure>
 
                                     </div>

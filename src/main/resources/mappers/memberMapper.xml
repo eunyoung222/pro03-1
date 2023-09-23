@@ -41,4 +41,13 @@
 	<update id="memberEdit">
 		update member set pw=#{pw }, name=#{name }, email=#{email }, tel=#{tel }, addr1=#{addr1 }, addr2=#{addr2 }, postcode=#{postcode } where id = #{id }
 	</update>
+
+	<!-- "findIdByEmail"과 관련된 MyBatis 매퍼(XML) -->
+	<select id="findIdByEmail" resultType="java.lang.String">
+		SELECT id FROM member WHERE email = #{email}
+	</select>
+
+	<select id="findPassword" resultType="java.lang.String">
+		SELECT pw FROM member WHERE id = #{id} AND email = #{email}
+	</select>
 </mapper>

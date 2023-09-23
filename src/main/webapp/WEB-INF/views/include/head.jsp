@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
@@ -18,5 +18,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css" />
 <link rel="stylesheet" href="${path0}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path0}/resources/css/style_test.css" />
+<link rel="stylesheet" href="${path0}/resources/css/forum.css" />
+<link rel="stylesheet" href="${path0}/resources/css/blog.css" />
+
+
 <script defer src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
 <script defer src="${path0}/resources/js/scripts.js"></script>
+<script defer src="${path0}/resources/js/animation.js"></script>
+<script defer src="${path0}/resources/js/common.js"></script>
+<script defer src="${path0}/resources/js/jquery-3.7.1.js"></script>

@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path0" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -13,33 +13,57 @@
     <title>회원 정보 보기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
+    <!-- 추가한 CSS 스타일 -->
+    <style>
+        /* 입력 필드와 버튼 스타일링 */
+        .input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        /* 테이블 스타일링 */
+        .table_form {
+            width: 100%;
+        }
+        .table_form th {
+            width: 100px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        .content table tbody tr:last-child td, .content table tbody tr:last-child th {
+            border-bottom-width: 0;
+            text-align: center;
+        }
+        /* 페이지 제목 스타일링 */
+        .page_tit {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center; /* 페이지 제목 가운데 정렬 */
+        }
+        /* 폼 컨테이너 스타일링 */
+        .form-container {
+            max-width: 600px; /* 폼 컨테이너 최대 너비 */
+            margin: 0 auto; /* 수평 가운데 정렬 */
+        }
+    </style>
 </head>
 <body>
 <div class="container is-fullhd">
     <!-- 헤더 부분 인클루드 -->
     <jsp:include page="../include/hd.jsp"></jsp:include>
     <figure class="visual" id="vs1">
-        <ul class="imgbox">
-            <li class="hero is-medium is-link" style="background-color: #004225;">
-                <div class="hero-body">
-                    <p class="title">
-                        Medium hero
-                    </p>
-                    <p class="subtitle">
-                        Medium subtitle
-                    </p>
-                </div>
-            </li>
-        </ul>
+        <!-- 이미지 슬라이더 부분은 그대로 두세요. -->
     </figure>
     <div class="content" id="content">
         <div class="row column text-center">
-            <div class="container">
+            <div class="container form-container"> <!-- 폼 컨테이너 -->
                 <c:if test="${sid=='admin' }">
-                    <h2 class="page_tit">회원 정보 수정</h2>
+                    <h2 class="page_tit">관리자 회원 정보 수정하기</h2>
                 </c:if>
                 <c:if test="${sid!='admin' }">
-                    <h2 class="page_tit">관리자 회원 정보 수정하기</h2>
+                    <h2 class="page_tit">회원 정보 수정하기</h2>
                 </c:if>
                 <hr>
                 <form action="${path1 }/member/update.do" method="post" onsubmit="return updateCheck(this)">
@@ -109,36 +133,9 @@
                         </table>
                     </div>
                 </form>
-                <script>
-                    function updateCheck(f){
-                        if(f.userpw.value!=f.userpw2.value){
-                            alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
-                            return false;
-                        }
-                    }
-                </script>
-                <script>
-                    function findAddr() {
-                        new daum.Postcode({
-                            oncomplete: function(data) {
-                                console.log(data);
-                                var roadAddr = data.roadAddress;
-                                var jibunAddr = data.jibunAddress;
-                                document.getElementById("postcode").value = data.zonecode;
-                                if(roadAddr !== '') {
-                                    document.getElementById("addr1").value = roadAddr;
-                                } else if(jibunAddr !== ''){
-                                    document.getElementById("addr1").value = jibunAddr;
-                                }
-                            }
-                        }).open();
-                    }
-                </script>
-                <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             </div>
         </div>
     </div>
-
     <!-- 푸터 부분 인클루드 -->
     <jsp:include page="../include/ft.jsp"></jsp:include>
 </div>

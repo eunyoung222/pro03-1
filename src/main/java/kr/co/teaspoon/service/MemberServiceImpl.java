@@ -71,4 +71,16 @@ public class MemberServiceImpl implements MemberService {
     public Member login(String id) throws Exception {
         return memberDAO.login(id);
     }
+
+    @Override
+    public String findByEmail(String email) throws Exception {
+        return memberDAO.findIdByEmail(email);
+    }
+
+    @Override
+    public String findPassword(String id, String email) throws Exception {
+        return memberDAO.findPassword(id, email);
+    }
+
+    // 아이디 찾기 구현
 }

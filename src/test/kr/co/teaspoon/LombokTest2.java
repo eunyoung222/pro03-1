@@ -1,6 +1,5 @@
 package kr.co.teaspoon;
 
-import kr.co.teaspoon.dto.Sample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.junit.*;

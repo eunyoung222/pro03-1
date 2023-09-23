@@ -15,8 +15,8 @@ public class EdumagCommentServiceImpl implements EdumagCommentService{
     private EdumagCommentDAO edumagCommentDAO;
 
     @Override
-    public List<EdumagComment> edumagCommentList(int no) throws Exception {
-        return edumagCommentDAO.edumagCommentList(no);
+    public List<EdumagComment> edumagCommentList(int par) throws Exception {
+        return edumagCommentDAO.edumagCommentList(par);
     }
 
     @Override
@@ -25,8 +25,12 @@ public class EdumagCommentServiceImpl implements EdumagCommentService{
     }
 
     @Override
-    public void edumagCommentDelete(int no) throws Exception {
-        edumagCommentDAO.edumagCommentDelete(no);
+    public void edumagCommentDelete(int dno) throws Exception {
+        edumagCommentDAO.edumagCommentDelete(dno);
     }
 
+    @Override
+    public void edumagCommentEdit(EdumagComment dto) throws Exception {
+        edumagCommentDAO.edumagCommentEdit(dto);
+    }
 }

@@ -1,12 +1,16 @@
 package kr.co.teaspoon.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class EdumagComment {
-    private int no;
-    private int bno;
-    private String id;
+    private int dno;
+    private String author;
     private String content;
-    private String resdate;
+    private String regdate;
+    private int par;
 }

@@ -39,4 +39,9 @@ public class BoardDAOImpl implements BoardDAO {
     public void boardEdit(Board dto) throws Exception {
         sqlSession.update("board.boardEdit", dto);
     }
+
+    @Override
+    public int addBoard(Board board) {
+        return 0;
+    }
 }

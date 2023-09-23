@@ -14,7 +14,7 @@
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
     <style>
-        .title { padding-top:36px; padding-bottom:20px; }
+        .title { padding-top:36px; padding-bottom:20px; padding-left: 200px;}
         .agree_fr { width: 900px; white-space:pre-wrap; margin: 10px auto;
             padding: 24px; border:2px solid #eee; height:600px; overflow-y:auto; }
     </style>
@@ -23,20 +23,6 @@
 <div class="container is-fullhd">
     <!-- 헤더 부분 인클루드 -->
     <jsp:include page="../include/hd.jsp"></jsp:include>
-    <figure class="visual" id="vs1">
-        <ul class="imgbox">
-            <li class="hero is-medium is-link" style="background-color: #004225;">
-                <div class="hero-body">
-                    <p class="title">
-                        Medium hero
-                    </p>
-                    <p class="subtitle">
-                        Medium subtitle
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </figure>
     <div class="content" id="contents">
         <h2 class="title">회원 약관 동의</h2>
         <article class="agree_fr">
@@ -953,8 +939,9 @@
     </div>
 </div>
 <br>
-<footer>
+<br>
+
+    <!-- 푸터 부분 인클루드 -->
     <jsp:include page="../include/ft.jsp"></jsp:include>
-</footer>
 </body>
 </html>

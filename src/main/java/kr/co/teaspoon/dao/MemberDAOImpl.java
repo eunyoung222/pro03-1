@@ -5,7 +5,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -59,4 +61,21 @@ public class MemberDAOImpl implements MemberDAO {
     public Member login(String id) throws Exception {
         return sqlSession.selectOne("member.login", id);
     }
+
+    // 아이디 찾기
+    @Override
+    public String findIdByEmail(String email) throws Exception {
+        return sqlSession.selectOne("member.findIdByEmail", email);
+    }
+
+    // 비밀번호 찾기
+    @Override
+    public String findPassword(String id, String email) throws Exception {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id);
+        params.put("email", email);
+        return sqlSession.selectOne("member.findPassword", params);
+    }
+
+
 }

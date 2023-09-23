@@ -6,14 +6,25 @@
 <%@ page import="java.text.*, java.net.InetAddress" %>
 <c:set var="path1" value="${pageContext.request.contextPath }" />
 
+<style>
+    .navbar-item img {
+        max-height: 80px;
+    }
+    .navbar-item {
+        padding-right: 40px !important;
+        font-size: large !important;
+        padding-top: 10px;
+    }
+</style>
+
 <!-- 헤더 내용 기술 -->
-<div class="hero-head">
+<div class="hero-head" style="height: 90px;">
     <div class="first_nav">
         <div class="container">
-            <nav class="navbar">
-                <div class="navbar-brand">
-                    <a class="navbar-item" href="http://aldi.github.io/awesome-bulma-templates">
-                        <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma Hotel" width="112" height="28" />
+            <nav class="navbar" style="background: #f0f0f0;">
+                <div class="navbar-brand" style="height: 80px;">
+                    <a class="navbar-item" href="${path1}/" style="height: 80px; padding-top: 10px">
+                        <img src="${path1}/resources/img/logo.png" alt="Bulma Hotel" style="width: 160px; height: 100%;" />
                     </a>
                     <a class="navbar-item is-hidden-desktop" href="tel:+302109849583">
                   <span class="icon" style="color: #333;">
@@ -30,37 +41,61 @@
                     <i class="fab fa-lg fa-facebook-f"></i>
                   </span>
                     </a>
-                    <!-- Mobile Menu -->
-                    <div class="navbar-burger burger" data-target="navMenuBlogHero">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
                 </div>
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start"></div>
-
                     <div class="navbar-end">
                         <div class="navbar-item">
-                            <a class="navbar-item is-active" href="${path1}/main">Home</a>
-                            <a class="navbar-item">
-                                Documentation
-                            </a>
 
                             <div class="navbar-item has-dropdown is-hoverable">
-                                <a class="navbar-link">
-                                    Community
+
+                                <a class="navbar-link" href="${path1}/edumag/list.do">
+                                    교육매거진
                                 </a>
 
                                 <div class="navbar-dropdown">
-                                    <a class="navbar-item is-active">Home</a>
-                                    <a class="navbar-item" href="${path1}/edumag/list.do">교육매거진</a>
-                                    <a class="navbar-item" href="${path1}/board/list.do">커뮤니티</a>
-                                    <a class="navbar-item" href="${path1}/board/list.do">이벤트</a>
-                                    <a class="navbar-item" href="${path1}/board/list.do">고객센터</a>
+                                    <a class="navbar-item" href="${path1}/edumag/list.do" style="font-size: 30px;">스페셜칼럼</a>
+                                </div>
+                            </div>
+
+                            <div class="navbar-item has-dropdown is-hoverable">
+
+                                <a class="navbar-link" href="${path1}/free/list.do">
+                                    커뮤니티
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="${path1}/free/list.do" style="font-size: 30px;">자유게시판</a>
+                                    <a class="navbar-item" href="${path1}" style="font-size: 30px;">교재게시판</a>
+                                </div>
+                            </div>
+
+                            <div class="navbar-item has-dropdown is-hoverable">
+
+                                <a class="navbar-link" href="${path1}/event/list.do">
+                                    이벤트
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="${path1}/event/list.do" style="font-size: 30px;">이벤트</a>
+                                    <a class="navbar-item" href="${path1}/winner/list.do" style="font-size: 30px;">이벤트 당첨자</a>
+                                    <a class="navbar-item" href="${path1}/survey/list.do" style="font-size: 30px;">윜이슈(설문)</a>
+                                </div>
+                            </div>
+
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    고객센터
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="${path1}/notice/list.do" style="font-size: 30px;">공지사항</a>
+                                    <a class="navbar-item" href="${path1}/faq/list.do" style="font-size: 30px;">자주 묻는 질문</a>
+                                    <a class="navbar-item" href="${path1}/qna/list.do" style="font-size: 30px;">묻고 답하기</a>
                                 </div>
                             </div>
                         </div>
+
                         <div class="navbar-end">
                             <div class="navbar-item">
                                 <div class="buttons">
@@ -81,8 +116,8 @@
                                         </a>
                                     </c:if>
                                     <c:if test="${sid.equals('admin')}">
-                                        <a href="${path1}/member/list.do" class="button is-light">
-                                            MemberList
+                                        <a href="${path1}/admin/adminList.do" class="button is-light">
+                                            관리자 페이지
                                         </a>
                                     </c:if>
                                 </div>
@@ -94,80 +129,3 @@
         </div>
     </div>
 </div>
-
-
-<%--<div class="container" id="navbar-container">--%>
-<%--    <nav class="navbar" role="navigation" aria-label="main navigation">--%>
-<%--        <div class="navbar-brand">--%>
-<%--            <a class="navbar-item" href="https://bulma.io">--%>
-<%--                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />--%>
-<%--            </a>--%>
-
-<%--            <a--%>
-<%--                    role="button"--%>
-<%--                    class="navbar-burger"--%>
-<%--                    aria-label="menu"--%>
-<%--                    aria-expanded="false"--%>
-<%--                    data-target="navbarBasicExample"--%>
-<%--            >--%>
-<%--                <span aria-hidden="true"></span>--%>
-<%--                <span aria-hidden="true"></span>--%>
-<%--                <span aria-hidden="true"></span>--%>
-<%--            </a>--%>
-<%--        </div>--%>
-
-<%--        <div id="navbarBasicExample" class="navbar-menu">--%>
-<%--            <div class="navbar-start"></div>--%>
-
-<%--            <div class="navbar-end">--%>
-<%--                <div class="navbar-item">--%>
-<%--                    <a class="navbar-item is-active" href="${path1}/main">Home</a>--%>
-<%--                    <a class="navbar-item">--%>
-<%--                        Documentation--%>
-<%--                    </a>--%>
-
-<%--                    <div class="navbar-item has-dropdown is-hoverable">--%>
-<%--                        <a class="navbar-link">--%>
-<%--                            Community--%>
-<%--                        </a>--%>
-
-<%--                        <div class="navbar-dropdown">--%>
-<%--                            <a class="navbar-item is-active">Home</a>--%>
-<%--                            <a class="navbar-item" href="${path1}/board/list.do">교육매거진</a>--%>
-<%--                            <a class="navbar-item" href="${path1}/board/list.do">커뮤니티</a>--%>
-<%--                            <a class="navbar-item" href="${path1}/board/list.do">이벤트</a>--%>
-<%--                            <a class="navbar-item" href="${path1}/board/list.do">고객센터</a>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="navbar-end">--%>
-<%--                    <div class="navbar-item">--%>
-<%--                        <div class="buttons">--%>
-<%--                            <c:if test="${!empty sid}">--%>
-<%--                                <a href="${path1}/member/mypage.do" class="button is-primary">--%>
-<%--                                    <strong>MyPage</strong>--%>
-<%--                                </a>--%>
-<%--                                <a href="${path1}/member/logout.do" class="button is-light">--%>
-<%--                                    LogOut--%>
-<%--                                </a>--%>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${empty sid}">--%>
-<%--                                <a href="${path1}/member/term.do" class="button is-primary">--%>
-<%--                                    <strong>Sign up</strong>--%>
-<%--                                </a>--%>
-<%--                                <a href="${path1}/member/login.do" class="button is-light">--%>
-<%--                                    Log in--%>
-<%--                                </a>--%>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${sid.equals('admin')}">--%>
-<%--                                <a href="${path1}/member/list.do" class="button is-light">--%>
-<%--                                    MemberList--%>
-<%--                                </a>--%>
-<%--                            </c:if>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </nav>--%>
-<%--</div>--%>

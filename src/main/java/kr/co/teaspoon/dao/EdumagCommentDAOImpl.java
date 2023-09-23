@@ -1,8 +1,6 @@
 package kr.co.teaspoon.dao;
 
-import kr.co.teaspoon.dto.Edumag;
 import kr.co.teaspoon.dto.EdumagComment;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +14,8 @@ public class EdumagCommentDAOImpl implements EdumagCommentDAO {
     private SqlSession sqlSession;
 
     @Override
-    public List<EdumagComment> edumagCommentList(int no) throws Exception {
-        return sqlSession.selectList("edumagComment.edumagCommentList", no);
+    public List<EdumagComment> edumagCommentList(int par) throws Exception {
+        return sqlSession.selectList("edumagComment.edumagCommentList", par);
     }
 
     @Override
@@ -26,9 +24,13 @@ public class EdumagCommentDAOImpl implements EdumagCommentDAO {
     }
 
     @Override
-    public void edumagCommentDelete(int no) throws Exception {
-        sqlSession.delete("edumagComment.edumagCommentDelete", no);
+    public void edumagCommentDelete(int dno) throws Exception {
+        sqlSession.delete("edumagComment.edumagCommentDelete", dno);
     }
 
+    @Override
+    public void edumagCommentEdit(EdumagComment dto) throws Exception {
+        sqlSession.update("edumagComment.edumagCommentEdit", dto);
+    }
 }
 
